@@ -5,6 +5,7 @@ SNIPPET_LENGTH = 200
 SOURCE_PREFIX = "Source: CNN"
 EDITOR_PREFIX = "Editor's Note:"
 
+
 class CnnContentExtractor:
 
     def extract(self, url):
@@ -16,16 +17,16 @@ class CnnContentExtractor:
         article = Article(url)
         article.download()
         article.parse()
-        
+
         text = article.text
         if text is None:
             return ""
-        
+
         cleaned = self._clean_text(text)
         if len(cleaned) < SNIPPET_LENGTH:
             return cleaned
-       
-        return cleaned[0 : SNIPPET_LENGTH].rstrip() + "..."
+
+        return cleaned[0: SNIPPET_LENGTH].rstrip() + "..."
 
 
     def _clean_text(self, text):
@@ -33,10 +34,10 @@ class CnnContentExtractor:
         for line in text.split('\n'):
             if self._is_article_line(line) and len(line) > 0:
                 result += line + " "
-       
-        return result        
+
+        return result
 
 
     def _is_article_line(self, line):
-        return (line.startswith(SOURCE_PREFIX) == False 
-            and line.startswith(EDITOR_PREFIX) == False)
+        return (line.startswith(SOURCE_PREFIX) is False
+                and line.startswith(EDITOR_PREFIX) is False)

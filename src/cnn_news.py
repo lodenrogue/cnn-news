@@ -11,7 +11,7 @@ class CnnNews():
 
 
 if __name__ == "__main__":
-    articles = CnnNews().get_articles(5) 
+    articles = CnnNews().get_articles(5)
 
     for article in articles:
         print("=====================================")

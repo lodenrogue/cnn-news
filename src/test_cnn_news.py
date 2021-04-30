@@ -2,6 +2,7 @@ import unittest
 from cnn_news import CnnNews
 import json
 
+
 class CnnNewsTest(unittest.TestCase):
 
     def test_returns_correct_article_count(self):
